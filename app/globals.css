@@ -1,0 +1,186 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f8f5f0;
+  color: #333;
+}
+
+main {
+  padding: 25px;
+}
+
+
+/* Navbar */
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 20px 40px;
+  border-radius: 15px;
+}
+
+nav h2 {
+  color: #8b5e34;
+}
+
+nav div {
+  display: flex;
+  gap: 25px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+}
+
+
+/* Hero */
+
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.hero h1 {
+  font-size: 50px;
+  color: #8b5e34;
+}
+
+.hero p {
+  font-size: 22px;
+}
+
+button {
+  background: #8b5e34;
+  color: white;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+
+/* Products */
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+
+.card {
+  background: white;
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px #ddd;
+}
+
+
+.card img {
+  border-radius: 15px;
+}
+
+
+/* About & Features */
+
+.about,
+.features,
+.contact {
+  background: white;
+  padding: 40px;
+  margin-top: 40px;
+  text-align: center;
+  border-radius: 20px;
+}
+
+
+.about h1,
+.features h1,
+.contact h1 {
+  color: #8b5e34;
+}
+
+
+/* Footer */
+
+footer {
+  margin-top: 50px;
+  padding: 30px;
+  text-align: center;
+  background: #222;
+  color: white;
+  border-radius: 15px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+  nav {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  nav div {
+    flex-direction: column;
+  }
+
+  .products {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;
+  }
+
+}
+.hero {
+ background: linear-gradient(135deg, #111, #8b5e34);
+  background-size: cover;
+  background-position: center;
+  min-height: 550px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.hero-text {
+  background: rgba(255,255,255,0.95);
+  padding: 50px;
+  border-radius: 25px;
+  text-align: center;
+}.hero-text {
+  background: rgba(255,255,255,0.92);
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 700px;
+}
+
+.hero-text h1{
+  font-size:60px;
+  color:#8b5e34;
+  margin-bottom:10px;
+  font-weight:bold;
+}
+
+.hero-text h2{
+  font-size:32px;
+  color:#222;
+}
+
+.hero-text p{
+  font-size:20px;
+  color:#555;
+  margin:20px 0;
+}
