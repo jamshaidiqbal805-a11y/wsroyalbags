@@ -1,209 +1,105 @@
 import Image from "next/image";
-<Image
-  src="/bags/bags1.jpeg"
-  width={300}
-  height={300}
-  alt="Luxury Bag"
-/>
 
 export default function Home() {
 
   const bags = [
-  {
-    name: "Luxury Bag 1",
-    image: "/bags/bags1.jpeg",
-    price: "Rs. 5,000"
-  },
-  {
-    name: "Luxury Bag 2",
-    image: "/bags/bags2.jpeg",
-    price: "Rs. 6,000"
-  },
-  {
-    name: "Luxury Bag 3",
-    image: "/bags/bags3.jpeg",
-    price: "Rs. 7,000"
-  },
-  {
-    name: "Luxury Bag 4",
-    image: "/bags/bags4.jpeg",
-    price: "Rs. 8,000"
-  },
-  {
-    name: "Luxury Bag 5",
-    image: "/bags/bags5.jpeg",
-    price: "Rs. 9,000"
-  },
-  {
-    name: "Luxury Bag 6",
-    image: "/bags/bags6.jpeg",
-    price: "Rs. 10,000"
-  },
-  {
-    name: "Luxury Bag 7",
-    image: "/bags/bags7.jpeg",
-    price: "Rs. 11,000"
-  },
-  {
-    name: "Luxury Bag 8",
-    image: "/bags/bags8.jpeg",
-    price: "Rs. 12,000"
-  },
-  {
-    name: "Luxury Bag 9",
-    image: "/bags/bags9.jpeg",
-    price: "Rs. 13,000"
-  }
-];
+    {
+      name: "Luxury Hand Bag",
+      image: "/bags/Bags1.jpeg",
+      price: "Rs. 5,000",
+      description: "Premium quality luxury handbag"
+    },
+    {
+      name: "Elegant Ladies Bag",
+      image: "/bags/Bags2.jpeg",
+      price: "Rs. 6,000",
+      description: "Stylish design for modern women"
+    },
+    {
+      name: "Travel Luxury Bag",
+      image: "/bags/Bags3.jpeg",
+      price: "Rs. 7,000",
+      description: "Strong and premium travel bag"
+    }
+  ];
 
   return (
-    <main>
+    <main className="min-h-screen bg-gray-100">
 
-      {/* Navbar */}
-      <nav>
-
-        <div className="logo">
-  <h1>WS Royal Bags</h1>
-          
-        </div>
-
-        <div className="menu">
-          <a href="#">Home</a>
-          <a href="#">Collection</a>
-          <a href="#">About</a>
-          <a href="#">Contact</a>
-        </div>
-
-      </nav>
-
-
-      {/* Hero */}
-      <section className="hero">
-
-        <div className="hero-text">
-
-          <h1>WS Royal Bags</h1>
-
-          <h2>Luxury Bags Collection</h2>
-
-          <p>
-            Premium Handbags & Travel Bags Designed for Style and Elegance.
-          </p>
-
-          <button>
-            Shop Now
-          </button>
-
-        </div>
-
-      </section>
+      {/* Header */}
+      <header className="bg-black text-white p-6 text-center">
+        <h1 className="text-3xl font-bold">
+          WS Royal Luxury Bags
+        </h1>
+        <p className="mt-2">
+          Premium Bags Collection
+        </p>
+      </header>
 
 
       {/* Products */}
-      <h1>Our Collection</h1>
+      <section className="p-6">
 
-      <div className="products">
+        <h2 className="text-3xl font-bold text-center mb-8">
+          Our Collection
+        </h2>
 
-        {bags.map((bag) => (
 
-          <div className="card" key={bag.name}>
+        <div className="grid md:grid-cols-3 gap-6">
 
-            <Image
-              src={bag.image}
-              width={300}
-              height={300}
-              alt={bag.name}
-            />
+          {bags.map((bag, index) => (
 
-            <h2>{bag.name}</h2>
-
-            <p>
-              Premium Quality Luxury Bag
-            </p>
-
-            <h3>
-              {bag.price}
-            </h3>
-
-            <a
-              href="https://wa.me/923157405911"
-              target="_blank"
+            <div
+              key={index}
+              className="bg-white rounded-xl shadow-lg p-4"
             >
-              <button>
+
+              <Image
+                src={bag.image}
+                alt={bag.name}
+                width={400}
+                height={400}
+                className="rounded-lg"
+              />
+
+
+              <h3 className="text-xl font-bold mt-4">
+                {bag.name}
+              </h3>
+
+
+              <p className="text-gray-600 mt-2">
+                {bag.description}
+              </p>
+
+
+              <p className="text-xl font-bold mt-3">
+                {bag.price}
+              </p>
+
+
+              <a
+                href={`https://wa.me/923157405911?text=I want to order ${bag.name}`}
+                target="_blank"
+                className="block text-center bg-green-600 text-white mt-4 py-3 rounded-lg"
+              >
                 Order on WhatsApp
-              </button>
-            </a>
-
-          </div>
-
-        ))}
-
-      </div>
+              </a>
 
 
-      {/* About */}
-      <section className="about">
+            </div>
 
-        <h1>About WS Royal Bags</h1>
+          ))}
 
-        <p>
-          WS Royal Bags provides premium quality luxury handbags,
-          travel bags and stylish collections.
-        </p>
-
-      </section>
-
-
-      {/* Why Choose Us */}
-      <section className="features">
-
-        <h1>Why Choose Us?</h1>
-
-        <h3>Premium Quality</h3>
-        <p>High quality material and elegant designs.</p>
-
-        <h3>Affordable Prices</h3>
-        <p>Luxury bags at competitive prices.</p>
-
-        <h3>Customer Support</h3>
-        <p>Easy WhatsApp ordering service.</p>
-
-      </section>
-
-
-      {/* Contact */}
-      <section className="contact">
-
-        <h1>Contact Us</h1>
-
-        <p>
-          Order your favorite bag today.
-        </p>
-
-        <a href="https://wa.me/923157405911">
-          <button>
-            WhatsApp Order
-          </button>
-        </a>
+        </div>
 
       </section>
 
 
       {/* Footer */}
-      <footer>
-
-        <h2>WS Royal Bags</h2>
-
-        <p>
-          Luxury Handbags & Travel Bags Collection
-        </p>
-
-        <p>
-          © 2026 WS Royal Bags
-        </p>
-
+      <footer className="bg-black text-white text-center p-4">
+        © WS Royal Luxury Bags
       </footer>
-
 
     </main>
   );
