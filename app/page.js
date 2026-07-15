@@ -3,16 +3,52 @@ import Image from "next/image";
 export default function Home() {
 
   const bags = [
-    { name: "Luxury Hand Bag", image: "/bags/Bags1.jpeg", price: "Rs. 5,000" },
-    { name: "Elegant Ladies Bag", image: "/bags/Bags2.jpeg", price: "Rs. 6,000" },
-    { name: "Travel Luxury Bag", image: "/bags/Bags3.jpeg", price: "Rs. 7,000" },
-    { name: "Classic Leather Bag", image: "/bags/Bags4.jpeg", price: "Rs. 8,000" },
-    { name: "Designer Fashion Bag", image: "/bags/Bags5.jpeg", price: "Rs. 9,000" },
-    { name: "Premium Carry Bag", image: "/bags/Bags6.jpeg", price: "Rs. 10,000" },
-    { name: "Royal Collection Bag", image: "/bags/Bags7.jpeg", price: "Rs. 11,000" },
-    { name: "Luxury Travel Bag", image: "/bags/Bags8.jpeg", price: "Rs. 12,000" },
-    { name: "Premium Women Bag", image: "/bags/Bags9.jpeg", price: "Rs. 13,000" }
-  ];
+  {
+    name: "Luxury Hand Bag",
+    image: "/bags/bags1.jpeg",
+    price: "Rs. 5,000"
+  },
+  {
+    name: "Elegant Ladies Bag",
+    image: "/bags/bags2.jpeg",
+    price: "Rs. 6,000"
+  },
+  {
+    name: "Travel Luxury Bag",
+    image: "/bags/bags3.jpeg",
+    price: "Rs. 7,000"
+  },
+  {
+    name: "Classic Leather Bag",
+    image: "/bags/bags4.jpeg",
+    price: "Rs. 8,000"
+  },
+  {
+    name: "Designer Fashion Bag",
+    image: "/bags/bags5.jpeg",
+    price: "Rs. 9,000"
+  },
+  {
+    name: "Premium Carry Bag",
+    image: "/bags/bags6.jpeg",
+    price: "Rs. 10,000"
+  },
+  {
+    name: "Royal Collection Bag",
+    image: "/bags/bags7.jpeg",
+    price: "Rs. 11,000"
+  },
+  {
+    name: "Luxury Travel Bag",
+    image: "/bags/bags8.jpeg",
+    price: "Rs. 12,000"
+  },
+  {
+    name: "Premium Women Bag",
+    image: "/bags/bags9.jpeg",
+    price: "Rs. 13,000"
+  }
+];
 
 
   return (
