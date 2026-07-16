@@ -75,12 +75,9 @@ export default function Home() {
 
         <div className="hero-text">
 
-          <Image
-            src="/logo.png"
-            alt="WS Royal Luxury Bags Logo"
-            width={120}
-            height={120}
-          />
+         <h1 className="text-2xl font-bold text-white">
+         WS Royal Bags
+        </h1>
 
           <h1>
             WS Royal Luxury Bags
