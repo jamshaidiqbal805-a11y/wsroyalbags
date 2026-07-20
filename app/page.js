@@ -27,7 +27,6 @@ export default function Home() {
   { code: "WS-020", name: "Luxury Bag 20", image: "/bags/bags20.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
   { code: "WS-021", name: "Luxury Bag 21", image: "/bags/bags21.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
 ];
-  ];
 
 
   return (
