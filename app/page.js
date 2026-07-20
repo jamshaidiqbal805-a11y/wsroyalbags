@@ -3,15 +3,15 @@ import Image from "next/image";
 export default function Home() {
 
   const bags = [
-  { code: "WS-001", name: "Premium Bag 01", image: "/bags/bags01.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
-  { code: "WS-002", name: "Premium Bag 02", image: "/bags/bags02.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
-  { code: "WS-003", name: "Premium Bag 03", image: "/bags/bags03.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
-  { code: "WS-004", name: "Premium Bag 04", image: "/bags/bags04.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
-  { code: "WS-005", name: "Premium Bag 05", image: "/bags/bags05.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
-  { code: "WS-006", name: "Premium Bag 06", image: "/bags/bags06.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
-  { code: "WS-007", name: "Premium Bag 07", image: "/bags/bags07.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
-  { code: "WS-008", name: "Premium Bag 08", image: "/bags/bags08.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
-  { code: "WS-009", name: "Premium Bag 09", image: "/bags/bags09.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+{ code: "WS-001", name: "Premium Bag 01", image: "/bags/bags1.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+{ code: "WS-002", name: "Premium Bag 02", image: "/bags/bags2.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+{ code: "WS-003", name: "Premium Bag 03", image: "/bags/bags3.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+{ code: "WS-004", name: "Premium Bag 04", image: "/bags/bags4.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+{ code: "WS-005", name: "Premium Bag 05", image: "/bags/bags5.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+{ code: "WS-006", name: "Premium Bag 06", image: "/bags/bags6.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+{ code: "WS-007", name: "Premium Bag 07", image: "/bags/bags7.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+{ code: "WS-008", name: "Premium Bag 08", image: "/bags/bags8.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+{ code: "WS-009", name: "Premium Bag 09", image: "/bags/bags9.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" }, "⭐⭐⭐⭐⭐" },
 
   { code: "WS-010", name: "Premium Shoulder Bag", image: "/bags/bags10.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
   { code: "WS-011", name: "Elegant Fashion Bag", image: "/bags/bags11.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
