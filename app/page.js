@@ -3,90 +3,30 @@ import Image from "next/image";
 export default function Home() {
 
   const bags = [
-    {
-  code: "WS-010",
-  name: "Premium Shoulder Bag",
-  image: "/bags/bags10.jpeg",
-  price: "Rs. 14,000",
-  rating: "⭐⭐⭐⭐⭐"
-},
-{
-  code: "WS-011",
-  name: "Elegant Fashion Bag",
-  image: "/bags/bags11.jpeg",
-  price: "Rs. 15,000",
-  rating: "⭐⭐⭐⭐⭐"
-},
-{
-  code: "WS-012",
-  name: "Luxury Tote Bag",
-  image: "/bags/bags12.jpeg",
-  price: "Rs. 16,000",
-  rating: "⭐⭐⭐⭐⭐"
-},
-{
-  code: "WS-013",
-  name: "Designer Hand Bag",
-  image: "/bags/bags13.jpeg",
-  price: "Rs. 17,000",
-  rating: "⭐⭐⭐⭐⭐"
-},
-{
-  code: "WS-014",
-  name: "Premium Office Bag",
-  image: "/bags/bags14.jpeg",
-  price: "Rs. 18,000",
-  rating: "⭐⭐⭐⭐⭐"
-},
-{
-  code: "WS-015",
-  name: "Luxury Leather Bag",
-  image: "/bags/bags15.jpeg",
-  price: "Rs. 19,000",
-  rating: "⭐⭐⭐⭐⭐"
-},
-{
-  code: "WS-016",
-  name: "Classic Fashion Bag",
-  image: "/bags/bags16.jpeg",
-  price: "Rs. 20,000",
-  rating: "⭐⭐⭐⭐⭐"
-},
-{
-  code: "WS-017",
-  name: "Travel Collection Bag",
-  image: "/bags/bags17.jpeg",
-  price: "Rs. 21,000",
-  rating: "⭐⭐⭐⭐⭐"
-},
-{
-  code: "WS-018",
-  name: "Premium Ladies Bag",
-  image: "/bags/bags18.jpeg",
-  price: "Rs. 22,000",
-  rating: "⭐⭐⭐⭐⭐"
-},
-{
-  code: "WS-019",
-  name: "Luxury Designer Bag",
-  image: "/bags/bags19.jpeg",
-  price: "Rs. 23,000",
-  rating: "⭐⭐⭐⭐⭐"
-},
-{
-  code: "WS-020",
-  name: "Royal Premium Bag",
-  image: "/bags/bags20.jpeg",
-  price: "Rs. 24,000",
-  rating: "⭐⭐⭐⭐⭐"
-},
-{
-  code: "WS-021",
-  name: "Exclusive Luxury Bag",
-  image: "/bags/bags21.jpeg",
-  price: "Rs. 25,000",
-  rating: "⭐⭐⭐⭐⭐"
-}
+  { code: "WS-001", name: "Premium Bag 01", image: "/bags/bags01.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-002", name: "Premium Bag 02", image: "/bags/bags02.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-003", name: "Premium Bag 03", image: "/bags/bags03.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-004", name: "Premium Bag 04", image: "/bags/bags04.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-005", name: "Premium Bag 05", image: "/bags/bags05.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-006", name: "Premium Bag 06", image: "/bags/bags06.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-007", name: "Premium Bag 07", image: "/bags/bags07.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-008", name: "Premium Bag 08", image: "/bags/bags08.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-009", name: "Premium Bag 09", image: "/bags/bags09.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+
+  { code: "WS-010", name: "Premium Shoulder Bag", image: "/bags/bags10.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-011", name: "Elegant Fashion Bag", image: "/bags/bags11.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-012", name: "Luxury Hand Bag", image: "/bags/bags12.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+
+  { code: "WS-013", name: "Luxury Bag 13", image: "/bags/bags13.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-014", name: "Luxury Bag 14", image: "/bags/bags14.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-015", name: "Luxury Bag 15", image: "/bags/bags15.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-016", name: "Luxury Bag 16", image: "/bags/bags16.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-017", name: "Luxury Bag 17", image: "/bags/bags17.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-018", name: "Luxury Bag 18", image: "/bags/bags18.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-019", name: "Luxury Bag 19", image: "/bags/bags19.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-020", name: "Luxury Bag 20", image: "/bags/bags20.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-021", name: "Luxury Bag 21", image: "/bags/bags21.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+];
   ];
 
 
