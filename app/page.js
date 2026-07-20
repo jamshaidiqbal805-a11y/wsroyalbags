@@ -4,50 +4,89 @@ export default function Home() {
 
   const bags = [
     {
-      name: "Luxury Hand Bag",
-      image: "/bags/bags1.jpeg",
-      price: "Rs. 5,000"
-    },
-    {
-      name: "Elegant Ladies Bag",
-      image: "/bags/bags2.jpeg",
-      price: "Rs. 6,000"
-    },
-    {
-      name: "Travel Luxury Bag",
-      image: "/bags/bags3.jpeg",
-      price: "Rs. 7,000"
-    },
-    {
-      name: "Classic Leather Bag",
-      image: "/bags/bags4.jpeg",
-      price: "Rs. 8,000"
-    },
-    {
-      name: "Designer Fashion Bag",
-      image: "/bags/bags5.jpeg",
-      price: "Rs. 9,000"
-    },
-    {
-      name: "Premium Carry Bag",
-      image: "/bags/bags6.jpeg",
-      price: "Rs. 10,000"
-    },
-    {
-      name: "Royal Collection Bag",
-      image: "/bags/bags7.jpeg",
-      price: "Rs. 11,000"
-    },
-    {
-      name: "Luxury Travel Bag",
-      image: "/bags/bags8.jpeg",
-      price: "Rs. 12,000"
-    },
-    {
-      name: "Premium Women Bag",
-      image: "/bags/bags9.jpeg",
-      price: "Rs. 13,000"
-    }
+  code: "WS-010",
+  name: "Premium Shoulder Bag",
+  image: "/bags/bags10.jpeg",
+  price: "Rs. 14,000",
+  rating: "⭐⭐⭐⭐⭐"
+},
+{
+  code: "WS-011",
+  name: "Elegant Fashion Bag",
+  image: "/bags/bags11.jpeg",
+  price: "Rs. 15,000",
+  rating: "⭐⭐⭐⭐⭐"
+},
+{
+  code: "WS-012",
+  name: "Luxury Tote Bag",
+  image: "/bags/bags12.jpeg",
+  price: "Rs. 16,000",
+  rating: "⭐⭐⭐⭐⭐"
+},
+{
+  code: "WS-013",
+  name: "Designer Hand Bag",
+  image: "/bags/bags13.jpeg",
+  price: "Rs. 17,000",
+  rating: "⭐⭐⭐⭐⭐"
+},
+{
+  code: "WS-014",
+  name: "Premium Office Bag",
+  image: "/bags/bags14.jpeg",
+  price: "Rs. 18,000",
+  rating: "⭐⭐⭐⭐⭐"
+},
+{
+  code: "WS-015",
+  name: "Luxury Leather Bag",
+  image: "/bags/bags15.jpeg",
+  price: "Rs. 19,000",
+  rating: "⭐⭐⭐⭐⭐"
+},
+{
+  code: "WS-016",
+  name: "Classic Fashion Bag",
+  image: "/bags/bags16.jpeg",
+  price: "Rs. 20,000",
+  rating: "⭐⭐⭐⭐⭐"
+},
+{
+  code: "WS-017",
+  name: "Travel Collection Bag",
+  image: "/bags/bags17.jpeg",
+  price: "Rs. 21,000",
+  rating: "⭐⭐⭐⭐⭐"
+},
+{
+  code: "WS-018",
+  name: "Premium Ladies Bag",
+  image: "/bags/bags18.jpeg",
+  price: "Rs. 22,000",
+  rating: "⭐⭐⭐⭐⭐"
+},
+{
+  code: "WS-019",
+  name: "Luxury Designer Bag",
+  image: "/bags/bags19.jpeg",
+  price: "Rs. 23,000",
+  rating: "⭐⭐⭐⭐⭐"
+},
+{
+  code: "WS-020",
+  name: "Royal Premium Bag",
+  image: "/bags/bags20.jpeg",
+  price: "Rs. 24,000",
+  rating: "⭐⭐⭐⭐⭐"
+},
+{
+  code: "WS-021",
+  name: "Exclusive Luxury Bag",
+  image: "/bags/bags21.jpeg",
+  price: "Rs. 25,000",
+  rating: "⭐⭐⭐⭐⭐"
+}
   ];
 
 
@@ -98,17 +137,17 @@ export default function Home() {
 
 
           <h2>
-            Premium Bags Collection
+            Premium Luxury Bags Collection 
           </h2>
 
 
           <p>
-            Discover elegant handbags and luxury travel bags designed with style, quality and modern fashion.
+            WS Royal Luxury Bags is a premium fashion brand offering stylish handbags, travel bags, shoulder bags and designer collections. Our mission is to deliver luxury products with excellent quality and affordable prices.
           </p>
 
 
           <button>
-            Shop Now
+            Explore Collection
           </button>
 
 
@@ -119,21 +158,39 @@ export default function Home() {
 
 
 
-      {/* Products Section */}
+     {/* Products Section */}
 
-      <section id="products">
+     <section id="products">
 
+     <div
+     style={{
+      display: "flex",
+      justifyContent: "center",
+      margin: "30px 0"
+     }}
+     >
+     <input
+      type="text"
+      placeholder="Search Luxury Bags..."
+      style={{
+        width: "400px",
+        padding: "15px",
+        fontSize: "18px",
+        borderRadius: "30px",
+        border: "2px solid #8b5e34"
+      }}
+      />
+       </div>
 
-        <div className="section-title">
-
+       <div className="section-title">
 
           <h1>
-            Our Luxury Collection
+            Luxury That Defines Your Style
           </h1>
 
 
           <p>
-            Explore our premium quality handbags and travel bags.
+            Premium Handbags | Travel Bags | Fashion Collection
           </p>
 
 
@@ -172,25 +229,34 @@ export default function Home() {
 
 
               <p>
-                {bag.price}
-              </p>
+             {bag.price}
+             </p>
 
+             <a
+             href={`https://wa.me/923157405911?text=${encodeURIComponent(
+            `👜 WS Royal Bags Inquiry
 
+            Product: ${bag.name}
+            Price: ${bag.price}
 
+            Hello,
 
-              <a
+            I would like to know:
 
-                href={`https://wa.me/923157405911?text=Assalamualaikum%20mujhe%20${bag.name}%20order%20karna%20hai`}
+            • Latest Price
+            • Availability
+            • Delivery Charges
+            • Color Options
 
-              >
-
-                <button>
-                  Order on WhatsApp
-                </button>
-
-
-              </a>
-
+            Website:
+            https://wsroyalbags.vercel.app`
+           )}`}
+           target="_blank"
+           >
+           <button>
+            Order on WhatsApp
+           </button>
+           </a>
 
 
             </div>
@@ -203,17 +269,37 @@ export default function Home() {
         </div>
 
 
+       </section>
+
+    {/* Statistics */}
+
+   <section className="stats">
+
+    <div className="stat">
+    <h2>500+</h2>
+    <p>Happy Customers</p>
+    </div>
+
+    <div className="stat">
+    <h2>50+</h2>
+    <p>Luxury Bags</p>
+    </div>
+
+    <div className="stat">
+     <h2>4.9★</h2>
+     <p>Customer Rating</p>
+     </div>
+
+     <div className="stat">
+     <h2>24/7</h2>
+     <p>WhatsApp Support</p>
+     </div>
+
       </section>
-
-
-
-
 
       {/* About Section */}
 
-
       <section className="about">
-
 
         <h1>
           About WS Royal Luxury Bags
@@ -221,7 +307,7 @@ export default function Home() {
 
 
         <p>
-          We provide premium quality luxury bags with elegant designs, modern style and customer satisfaction.
+          WS Royal Luxury Bags offers premium handbags, shoulder bags, office bags and travel bags with elegant designs and excellent quality. We are committed to providing stylish collections at affordable prices with reliable customer service across Pakistan.
         </p>
 
 
@@ -268,7 +354,14 @@ export default function Home() {
 
 
         <p>
-          WhatsApp: 03157405911
+         WhatsApp:
+         +92 315 7405911
+
+         Email:
+         info@wsroyalbags.com
+
+         Location:
+         Lahore, Pakistan
         </p>
 
 
