@@ -1,90 +1,383 @@
 "use client";
 
-import { useState } from "react";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  serverTimestamp,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
+
 import { db } from "../../lib/firebase";
 
 export default function SalesPage() {
+
+  const [products, setProducts] = useState([]);
+
   const [customerName, setCustomerName] = useState("");
-  const [product, setProduct] = useState("");
+  const [productId, setProductId] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [amount, setAmount] = useState("");
 
-  const saveSale = async () => {
-    if (!customerName || !product || !quantity || !amount) {
-      alert("Please fill all fields");
-      return;
-    }
+  const [amount, setAmount] = useState(0);
+  const [profit, setProfit] = useState(0);
 
-    try {
-      await addDoc(collection(db, "sales"), {
-        customerName,
-        product,
-        quantity: Number(quantity),
-        amount: Number(amount),
-        createdAt: serverTimestamp(),
+
+  async function loadProducts(){
+
+    const snapshot = await getDocs(
+      collection(db,"products")
+    );
+
+    const list=[];
+
+    snapshot.forEach((item)=>{
+
+      list.push({
+        id:item.id,
+        ...item.data()
       });
 
-      alert("Sale Saved Successfully ✅");
+    });
 
-      setCustomerName("");
-      setProduct("");
-      setQuantity("");
-      setAmount("");
-    } catch (error) {
-      console.error(error);
-      alert("Error saving sale");
+    setProducts(list);
+
+  }
+
+
+  useEffect(()=>{
+
+    loadProducts();
+
+  },[]);
+
+
+
+  function calculateAmount(qty, product){
+
+    if(product){
+
+      const total =
+      Number(product.salePrice) *
+      Number(qty);
+
+
+      const profitAmount =
+      (Number(product.salePrice) -
+      Number(product.purchasePrice))
+      *
+      Number(qty);
+
+
+      setAmount(total);
+      setProfit(profitAmount);
+
     }
-  };
 
-  return (
-    <main className="min-h-screen bg-gray-100 p-8">
-      <h1 className="text-4xl font-bold text-center mb-10">
-        Add New Sale
-      </h1>
+  }
 
-      <div className="max-w-xl mx-auto bg-white p-6 rounded-xl shadow">
 
-        <input
-          type="text"
-          placeholder="Customer Name"
-          value={customerName}
-          onChange={(e) => setCustomerName(e.target.value)}
-          className="w-full border p-3 rounded mb-4"
-        />
 
-        <input
-          type="text"
-          placeholder="Product Code (WS-001)"
-          value={product}
-          onChange={(e) => setProduct(e.target.value)}
-          className="w-full border p-3 rounded mb-4"
-        />
 
-        <input
-          type="number"
-          placeholder="Quantity"
-          value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
-          className="w-full border p-3 rounded mb-4"
-        />
+  async function saveSale(){
 
-        <input
-          type="number"
-          placeholder="Amount"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          className="w-full border p-3 rounded mb-6"
-        />
 
-        <button
-          onClick={saveSale}
-          className="w-full bg-green-600 text-white p-3 rounded hover:bg-green-700"
-        >
-          Save Sale
-        </button>
+    if(
+      customerName === "" ||
+      productId === "" ||
+      quantity === ""
+    ){
 
-      </div>
-    </main>
-  );
+      alert("Please fill all fields");
+      return;
+
+    }
+
+
+    const product =
+    products.find(
+      (item)=>item.id === productId
+    );
+
+
+
+    if(!product){
+
+      alert("Product not found");
+      return;
+
+    }
+
+
+
+    if(
+      Number(quantity) >
+      Number(product.stock)
+    ){
+
+      alert("Not enough stock");
+      return;
+
+    }
+
+
+
+    const newStock =
+    Number(product.stock) -
+    Number(quantity);
+
+
+
+    await updateDoc(
+
+      doc(
+        db,
+        "products",
+        productId
+      ),
+
+      {
+        stock:newStock
+      }
+
+    );
+
+
+
+    await addDoc(
+
+      collection(db,"sales"),
+
+      {
+
+        customerName,
+
+        product:
+        product.productCode,
+
+        productName:
+        product.productName,
+
+        quantity:
+        Number(quantity),
+
+        amount:
+        Number(amount),
+
+        profit:
+        Number(profit),
+
+        createdAt:
+        serverTimestamp()
+
+      }
+
+    );
+
+
+
+    alert("Sale Saved Successfully ✅");
+
+
+
+    setCustomerName("");
+    setProductId("");
+    setQuantity("");
+    setAmount(0);
+    setProfit(0);
+
+
+    loadProducts();
+
+
+  }
+
+
+
+
+return (
+
+<main className="min-h-screen bg-gray-100 p-8">
+
+
+<h1 className="text-4xl font-bold text-center mb-10">
+Add New Sale
+</h1>
+
+
+
+<div className="max-w-xl mx-auto bg-white p-6 rounded-xl shadow">
+
+
+
+<input
+
+type="text"
+
+placeholder="Customer Name"
+
+value={customerName}
+
+onChange={(e)=>
+setCustomerName(e.target.value)
+}
+
+className="w-full border p-3 rounded mb-4"
+
+/>
+
+
+
+
+<select
+
+value={productId}
+
+onChange={(e)=>{
+
+const id=e.target.value;
+
+setProductId(id);
+
+
+const product =
+products.find(
+(item)=>item.id===id
+);
+
+
+if(product && quantity){
+
+calculateAmount(
+quantity,
+product
+);
+
+}
+
+
+}}
+
+className="w-full border p-3 rounded mb-4"
+
+>
+
+
+<option value="">
+Select Product
+</option>
+
+
+
+{
+products.map((item)=>(
+
+<option
+
+key={item.id}
+
+value={item.id}
+
+>
+
+{item.productCode}
+-
+{item.productName}
+
+(Stock:{item.stock})
+
+</option>
+
+))
+}
+
+
+</select>
+
+
+
+
+<input
+
+type="number"
+
+placeholder="Quantity"
+
+value={quantity}
+
+onChange={(e)=>{
+
+
+const qty=e.target.value;
+
+setQuantity(qty);
+
+
+
+const product =
+products.find(
+(item)=>item.id===productId
+);
+
+
+calculateAmount(
+qty,
+product
+);
+
+
+}}
+
+className="w-full border p-3 rounded mb-4"
+
+/>
+
+
+
+
+<input
+
+type="number"
+
+value={amount}
+
+readOnly
+
+className="w-full border p-3 rounded mb-4 bg-gray-100"
+
+/>
+
+
+
+<div className="mb-5 font-bold">
+
+Profit: Rs {profit}
+
+</div>
+
+
+
+
+<button
+
+onClick={saveSale}
+
+className="w-full bg-green-600 text-white p-3 rounded"
+
+>
+
+Save Sale
+
+</button>
+
+
+
+</div>
+
+
+</main>
+
+);
+
 }
