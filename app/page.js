@@ -2,30 +2,28 @@ import Image from "next/image";
 
 export default function Home() {
 const bags = [
-  { code: "WS-001", name: "Premium Bag 01", image: "/bags/bags1.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
-  { code: "WS-002", name: "Premium Bag 02", image: "/bags/bags2.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
-  { code: "WS-003", name: "Premium Bag 03", image: "/bags/bags3.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
-  { code: "WS-004", name: "Premium Bag 04", image: "/bags/bags4.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
-  { code: "WS-005", name: "Premium Bag 05", image: "/bags/bags5.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
-  { code: "WS-006", name: "Premium Bag 06", image: "/bags/bags6.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
-  { code: "WS-007", name: "Premium Bag 07", image: "/bags/bags7.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
-  { code: "WS-008", name: "Premium Bag 08", image: "/bags/bags8.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
-  { code: "WS-009", name: "Premium Bag 09", image: "/bags/bags9.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
-
-  { code: "WS-010", name: "Premium Shoulder Bag", image: "/bags/bags10.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
-  { code: "WS-011", name: "Elegant Fashion Bag", image: "/bags/bags11.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
-  { code: "WS-012", name: "Luxury Hand Bag", image: "/bags/bags12.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
-  { code: "WS-013", name: "Luxury Bag 13", image: "/bags/bags13.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
-  { code: "WS-014", name: "Luxury Bag 14", image: "/bags/bags14.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
-  { code: "WS-015", name: "Luxury Bag 15", image: "/bags/bags15.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
-  { code: "WS-016", name: "Luxury Bag 16", image: "/bags/bags16.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
-  { code: "WS-017", name: "Luxury Bag 17", image: "/bags/bags17.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
-  { code: "WS-018", name: "Luxury Bag 18", image: "/bags/bags18.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
-  { code: "WS-019", name: "Luxury Bag 19", image: "/bags/bags19.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
-  { code: "WS-020", name: "Luxury Bag 20", image: "/bags/bags20.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
-  { code: "WS-021", name: "Luxury Bag 21", image: "/bags/bags21.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-001", name: "Royal Elegance Tote", image: "/bags/bags1.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-002", name: "Prestige Leather Handbag", image: "/bags/bags2.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-003", name: "Imperial Shoulder Bag", image: "/bags/bags3.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-004", name: "Elite Fashion Tote", image: "/bags/bags4.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-005", name: "Diamond Grace Bag", image: "/bags/bags5.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-006", name: "Signature Office Bag", image: "/bags/bags6.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-007", name: "Luxury Classic Tote", image: "/bags/bags7.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-008", name: "Premium Chic Bag", image: "/bags/bags8.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-009", name: "Royal Charm Handbag", image: "/bags/bags9.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-010", name: "Executive Leather Bag", image: "/bags/bags10.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-011", name: "Elite Queen Bag", image: "/bags/bags11.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-012", name: "Golden Luxe Tote", image: "/bags/bags12.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-013", name: "Diamond Edition Bag", image: "/bags/bags13.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-014", name: "Royal Grace Collection", image: "/bags/bags14.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-015", name: "Signature Luxury Bag", image: "/bags/bags15.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-016", name: "Prestige Office Tote", image: "/bags/bags16.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-017", name: "Elegant Charm Bag", image: "/bags/bags17.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-018", name: "Premium Voyager Bag", image: "/bags/bags18.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-019", name: "Crown Collection Bag", image: "/bags/bags19.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-020", name: "Elite Executive Bag", image: "/bags/bags20.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
+  { code: "WS-021", name: "Royal Heritage Bag", image: "/bags/bags21.jpeg", price: "Rs. 14,000", rating: "⭐⭐⭐⭐⭐" },
 ];
-
 
   return (
 
@@ -159,15 +157,49 @@ const bags = [
 
 
 
-              <h2>
-                {bag.name}
-              </h2>
+              <p
+            style={{
+            color: "#8b5e34",
+            fontWeight: "bold",
+            fontSize: "14px",
+            marginTop: "10px",
+            letterSpacing: "1px",
+            }}
+          >
+          {bag.code}
+          </p>
 
+          <h2
+          style={{
+          fontSize: "22px",
+          fontWeight: "700",
+          margin: "8px 0",
+          color: "#222",
+         }}
+         >
+         {bag.name}
+        </h2>
 
+        <p
+        style={{
+        color: "#f4b400",
+        fontSize: "16px",
+        marginBottom: "8px",
+        }}
+       >
+       {bag.rating}
+      </p>
 
-              <p>
-             {bag.price}
-             </p>
+      <p
+       style={{
+       fontSize: "20px",
+       fontWeight: "bold",
+      color: "#8b5e34",
+      marginBottom: "15px",
+      }}
+    >
+    {bag.price}
+      </p>
 
              <a
              href={`https://wa.me/923157405911?text=${encodeURIComponent(
