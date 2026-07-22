@@ -203,22 +203,23 @@ const bags = [
 
              <a
              href={`https://wa.me/923157405911?text=${encodeURIComponent(
-            `👜 WS Royal Bags Inquiry
+             `👜 WS Royal Luxury Bags Inquiry
 
-            Product: ${bag.name}
-            Price: ${bag.price}
+         Product Code: ${bag.code}
+         Product Name: ${bag.name}
+         Price: ${bag.price}
 
-            Hello,
+          Hello,
 
-            I would like to know:
+          I am interested in this bag. Please share:
 
-            • Latest Price
-            • Availability
-            • Delivery Charges
-            • Color Options
+          • Latest Price
+          • Availability
+          • Color Options
+          • Delivery Charges
 
-            Website:
-            https://wsroyalbags.vercel.app`
+           Website:
+           https://wsroyalbags.vercel.app`
            )}`}
            target="_blank"
            >
