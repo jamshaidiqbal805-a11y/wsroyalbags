@@ -5,11 +5,19 @@ export default function sitemap() {
       lastModified: new Date(),
     },
     {
-      url: "https://wsroyalbags.vercel.app/login",
+      url: "https://wsroyalbags.vercel.app/sales",
       lastModified: new Date(),
     },
     {
-      url: "https://wsroyalbags.vercel.app/sales",
+      url: "https://wsroyalbags.vercel.app/dashboard",
+      lastModified: new Date(),
+    },
+    {
+      url: "https://wsroyalbags.vercel.app/dashboard/products",
+      lastModified: new Date(),
+    },
+    {
+      url: "https://wsroyalbags.vercel.app/dashboard/purchase",
       lastModified: new Date(),
     },
   ];
