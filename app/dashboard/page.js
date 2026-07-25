@@ -90,7 +90,9 @@ export default function Dashboard() {
 
       setLoading(true);
 
+      // ======================
       // SALES
+      // ======================
 
       const salesSnapshot = await getDocs(
 
@@ -104,7 +106,7 @@ export default function Dashboard() {
 
       );
 
-      const salesData = salesSnapshot.docs.map(doc => ({
+      const salesData = salesSnapshot.docs.map((doc) => ({
 
         id: doc.id,
 
@@ -114,36 +116,54 @@ export default function Dashboard() {
 
       setSales(salesData);
 
+      // ======================
       // PRODUCTS
+      // ======================
 
       const productSnapshot = await getDocs(
+
         collection(db, "products")
+
       );
 
-      const productData = productSnapshot.docs.map(doc => ({
+      const productData = productSnapshot.docs.map((doc) => ({
+
         id: doc.id,
+
         ...doc.data(),
+
       }));
 
       setProducts(productData);
 
+      // ======================
       // PURCHASES
+      // ======================
 
       const purchaseSnapshot = await getDocs(
+
         collection(db, "purchases")
+
       );
 
-      const purchaseData = purchaseSnapshot.docs.map(doc => ({
+      const purchaseData = purchaseSnapshot.docs.map((doc) => ({
+
         id: doc.id,
+
         ...doc.data(),
+
       }));
 
       setPurchases(purchaseData);
 
       calculateStats(
+
         salesData,
+
         productData,
+
         purchaseData
+
       );
 
       createSalesChart(salesData);
@@ -187,7 +207,9 @@ function calculateStats(
   let monthSales = 0;
   let monthOrders = 0;
 
+  // ======================
   // SALES
+  // ======================
 
   salesData.forEach((sale) => {
 
@@ -222,6 +244,7 @@ function calculateStats(
     const diffDays = Math.floor(
 
       (today - saleDate) /
+
       (1000 * 60 * 60 * 24)
 
     );
@@ -254,19 +277,27 @@ function calculateStats(
 
   });
 
+  // ======================
   // PURCHASES
+  // ======================
 
   purchaseData.forEach((item) => {
 
     totalPurchase += Number(
+
       item.amount ||
+
       item.total ||
+
       0
+
     );
 
   });
 
+  // ======================
   // PRODUCTS
+  // ======================
 
   productData.forEach((item) => {
 
@@ -308,15 +339,13 @@ function calculateStats(
 
     totalOrders,
 
-    totalProducts:
-      productData.length,
+    totalProducts: productData.length,
 
     totalStock,
 
     totalPurchase,
 
-    cashInHand:
-      totalSales - totalPurchase,
+    cashInHand: totalSales - totalPurchase,
 
     averageOrderValue,
 
@@ -408,33 +437,26 @@ function calculateTopProducts(salesData) {
     );
 
     if (!productMap[name]) {
-
       productMap[name] = 0;
-
     }
 
     productMap[name] += qty;
 
   });
 
-  const result =
+  const result = Object.keys(productMap)
 
-    Object.keys(productMap)
+    .map((name) => ({
 
-      .map((name) => ({
+      name,
 
-        name,
+      quantity: productMap[name],
 
-        quantity: productMap[name],
+    }))
 
-      }))
+    .sort((a, b) => b.quantity - a.quantity)
 
-      .sort(
-        (a, b) =>
-          b.quantity - a.quantity
-      )
-
-      .slice(0, 5);
+    .slice(0, 5);
 
   setTopProducts(result);
 
@@ -463,6 +485,7 @@ function formatMoney(value) {
   ).format(value);
 
 }
+
 // ===============================
 // LOADING SCREEN
 // ===============================
@@ -471,36 +494,17 @@ if (loading) {
 
   return (
 
-    <div className="
-    min-h-screen
-    flex
-    items-center
-    justify-center
-    bg-gray-100
-    ">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
 
-      <div className="
-      bg-white
-      p-10
-      rounded-2xl
-      shadow-xl
-      text-center
-      ">
+      <div className="bg-white p-10 rounded-2xl shadow-xl text-center">
 
-        <h2 className="
-        text-3xl
-        font-bold
-        text-gray-800
-        ">
+        <h2 className="text-3xl font-bold text-gray-800">
 
           Loading WS Royal Bags...
 
         </h2>
 
-        <p className="
-        text-gray-500
-        mt-3
-        ">
+        <p className="text-gray-500 mt-3">
 
           Fetching Business Data...
 
@@ -513,24 +517,13 @@ if (loading) {
   );
 
 }
-
 // ===============================
 // RETURN START
 // ===============================
 
 return (
 
-<main className="
-min-h-screen
-bg-gray-100
-p-6
-">
-
-<div className="
-max-w-7xl
-mx-auto
-">
-
+<div className="max-w-7xl mx-auto">
 <h1 className="
 text-4xl
 font-bold
@@ -556,17 +549,13 @@ text-gray-500
 mt-2
 ">
 
-Today's Date :
-
-{
-
-new Date().toLocaleDateString()
-
-}
+Today's Date : {new Date().toLocaleDateString()}
 
 </div>
 
-{/* KPI CARDS */}
+{/* ===========================
+KPI CARDS
+=========================== */}
 
 <div className="
 grid
@@ -587,9 +576,7 @@ p-5
 ">
 
 <p className="text-gray-500">
-
 Total Sales
-
 </p>
 
 <h2 className="
@@ -599,11 +586,7 @@ text-green-600
 mt-2
 ">
 
-{
-
-formatMoney(stats.totalSales)
-
-}
+{formatMoney(stats.totalSales)}
 
 </h2>
 
@@ -631,23 +614,13 @@ text-blue-600
 mt-2
 ">
 
-{
-
-formatMoney(stats.todaySales)
-
-}
+{formatMoney(stats.todaySales)}
 
 </h2>
 
 <p className="text-sm text-gray-400">
 
-{
-
-stats.todayOrders
-
-}
-
-Orders
+{stats.todayOrders} Orders
 
 </p>
 
@@ -675,23 +648,13 @@ text-purple-600
 mt-2
 ">
 
-{
-
-formatMoney(stats.weekSales)
-
-}
+{formatMoney(stats.weekSales)}
 
 </h2>
 
 <p className="text-sm text-gray-400">
 
-{
-
-stats.weekOrders
-
-}
-
-Orders
+{stats.weekOrders} Orders
 
 </p>
 
@@ -719,23 +682,13 @@ text-orange-600
 mt-2
 ">
 
-{
-
-formatMoney(stats.monthSales)
-
-}
+{formatMoney(stats.monthSales)}
 
 </h2>
 
 <p className="text-sm text-gray-400">
 
-{
-
-stats.monthOrders
-
-}
-
-Orders
+{stats.monthOrders} Orders
 
 </p>
 
@@ -747,178 +700,140 @@ REVENUE CHART + INVENTORY
 =========================== */}
 
 <div
-className="
-grid
-grid-cols-1
-lg:grid-cols-3
-gap-6
-mt-8
+  className="
+  grid
+  grid-cols-1
+  lg:grid-cols-3
+  gap-6
+  mt-8
 ">
 
-{/* Revenue Chart */}
+  {/* Revenue Chart */}
 
-<div
-className="
-lg:col-span-2
-bg-white
-rounded-2xl
-shadow-lg
-p-6
-">
+  <div
+    className="
+    lg:col-span-2
+    bg-white
+    rounded-2xl
+    shadow-lg
+    p-6
+  ">
 
-<h2
-className="
-text-xl
-font-bold
-mb-5
-">
+    <h2
+      className="
+      text-xl
+      font-bold
+      mb-5
+    ">
+      Revenue Overview
+    </h2>
 
-Revenue Overview
+    <ResponsiveContainer
+      width="100%"
+      height={320}
+    >
 
-</h2>
+      <LineChart data={salesChart}>
 
-<ResponsiveContainer
-width="100%"
-height={320}
->
+        <CartesianGrid strokeDasharray="3 3" />
 
-<LineChart
-data={salesChart}
->
+        <XAxis dataKey="day" />
 
-<CartesianGrid
-strokeDasharray="3 3"
-/>
+        <YAxis />
 
-<XAxis
-dataKey="day"
-/>
+        <Tooltip />
 
-<YAxis/>
+        <Line
+          type="monotone"
+          dataKey="revenue"
+          stroke="#2563eb"
+          strokeWidth={3}
+        />
 
-<Tooltip/>
+      </LineChart>
 
-<Line
-type="monotone"
-dataKey="revenue"
-stroke="#2563eb"
-strokeWidth={3}
-/>
+    </ResponsiveContainer>
 
-</LineChart>
+  </div>
 
-</ResponsiveContainer>
+  {/* Inventory Card */}
 
-</div>
+  <div
+    className="
+    bg-white
+    rounded-2xl
+    shadow-lg
+    p-6
+  ">
 
-{/* Inventory Card */}
+    <h2
+      className="
+      text-xl
+      font-bold
+      mb-5
+    ">
+      Inventory Intelligence
+    </h2>
 
-<div
-className="
-bg-white
-rounded-2xl
-shadow-lg
-p-6
-">
+    <div className="space-y-5">
 
-<h2
-className="
-text-xl
-font-bold
-mb-5
-">
+      <div>
 
-Inventory Intelligence
+        <p className="text-gray-500">
+          Inventory Value
+        </p>
 
-</h2>
+        <h3
+          className="
+          text-3xl
+          font-bold
+          text-indigo-600
+          mt-2
+        ">
+          {formatMoney(stats.inventoryValue)}
+        </h3>
 
-<div className="space-y-5">
+      </div>
 
-<div>
+      <div>
 
-<p className="text-gray-500">
+        <p className="text-gray-500">
+          Available Stock
+        </p>
 
-Inventory Value
+        <h3
+          className="
+          text-3xl
+          font-bold
+          text-green-600
+          mt-2
+        ">
+          {stats.totalStock}
+        </h3>
 
-</p>
+      </div>
 
-<h3
-className="
-text-3xl
-font-bold
-text-indigo-600
-mt-2
-">
+      <div>
 
-{
+        <p className="text-gray-500">
+          Average Order
+        </p>
 
-formatMoney(
-stats.inventoryValue
-)
+        <h3
+          className="
+          text-2xl
+          font-bold
+          text-orange-600
+          mt-2
+        ">
+          {formatMoney(stats.averageOrderValue)}
+        </h3>
 
-}
+      </div>
 
-</h3>
+    </div>
 
-</div>
-
-<div>
-
-<p className="text-gray-500">
-
-Available Stock
-
-</p>
-
-<h3
-className="
-text-3xl
-font-bold
-text-green-600
-mt-2
-">
-
-{
-
-stats.totalStock
-
-}
-
-</h3>
-
-</div>
-
-<div>
-
-<p className="text-gray-500">
-
-Average Order
-
-</p>
-
-<h3
-className="
-text-2xl
-font-bold
-text-orange-600
-mt-2
-">
-
-{
-
-formatMoney(
-stats.averageOrderValue
-)
-
-}
-
-</h3>
-
-</div>
-
-</div>
-
-</div>
+  </div>
 
 </div>
 {/* ===========================
@@ -926,822 +841,411 @@ BEST SELLING + LOW STOCK
 =========================== */}
 
 <div
-className="
-grid
-grid-cols-1
-lg:grid-cols-2
-gap-6
-mt-8
+  className="
+  grid
+  grid-cols-1
+  lg:grid-cols-2
+  gap-6
+  mt-8
 ">
 
-{/* Best Selling Bags */}
+  {/* Best Selling Bags */}
 
-<div
-className="
-bg-white
-rounded-2xl
-shadow-lg
-p-6
-">
+  <div
+    className="
+    bg-white
+    rounded-2xl
+    shadow-lg
+    p-6
+  ">
 
-<h2
-className="
-text-xl
-font-bold
-mb-5
-">
+    <h2
+      className="
+      text-xl
+      font-bold
+      mb-5
+    ">
+      🏆 Best Selling Bags
+    </h2>
 
-Best Selling Bags
+    <ResponsiveContainer
+      width="100%"
+      height={300}
+    >
 
-</h2>
+      <BarChart data={topProducts}>
 
-<ResponsiveContainer
-width="100%"
-height={300}
->
+        <CartesianGrid strokeDasharray="3 3" />
 
-<BarChart
-data={topProducts}
->
+        <XAxis dataKey="name" />
 
-<XAxis
-dataKey="name"
-hide
-/>
+        <YAxis />
 
-<YAxis/>
+        <Tooltip />
 
-<Tooltip/>
+        <Bar
+          dataKey="quantity"
+          fill="#2563eb"
+          radius={[8,8,0,0]}
+        />
 
-<Bar
-dataKey="quantity"
-fill="#2563eb"
-/>
+      </BarChart>
 
-</BarChart>
+    </ResponsiveContainer>
 
-</ResponsiveContainer>
+  </div>
 
-</div>
+  {/* Low Stock */}
 
-{/* Low Stock */}
+  <div
+    className="
+    bg-white
+    rounded-2xl
+    shadow-lg
+    p-6
+  ">
 
-<div
-className="
-bg-white
-rounded-2xl
-shadow-lg
-p-6
-">
+    <h2
+      className="
+      text-xl
+      font-bold
+      text-red-600
+      mb-5
+    ">
+      ⚠️ Low Stock Alerts
+    </h2>
 
-<h2
-className="
-text-xl
-font-bold
-mb-5
-text-red-600
-">
+    <div className="overflow-x-auto">
 
-⚠️ Low Stock Alerts
+      <table className="w-full">
 
-</h2>
+        <thead>
 
-<div
-className="
-overflow-x-auto
-">
+          <tr className="border-b text-gray-600">
 
-<table
-className="
-w-full
-">
+            <th className="p-3 text-left">
+              Product
+            </th>
 
-<thead>
+            <th className="p-3 text-left">
+              Category
+            </th>
 
-<tr
-className="
-border-b
-text-gray-600
-">
+            <th className="p-3 text-center">
+              Stock
+            </th>
 
-<th className="p-3 text-left">
+          </tr>
 
-Product
+        </thead>
 
-</th>
+        <tbody>
 
-<th className="p-3 text-left">
+          {products
+            .filter(item => Number(item.stock || 0) <= 5)
+            .map(item => (
 
-Category
+            <tr
+              key={item.id}
+              className="border-b"
+            >
 
-</th>
+              <td className="p-3">
+                {item.productName || item.name || "Unknown"}
+              </td>
 
-<th className="p-3 text-center">
+              <td className="p-3">
+                {item.category || "Bags"}
+              </td>
 
-Stock
+              <td className="p-3 text-center font-bold text-red-600">
+                {item.stock || 0}
+              </td>
 
-</th>
+            </tr>
 
-</tr>
+          ))}
 
-</thead>
+        </tbody>
 
-<tbody>
+      </table>
 
-{
+    </div>
 
-products
-
-.filter(
-
-item => Number(item.stock || 0) <= 5
-
-)
-
-.map(item => (
-
-<tr
-key={item.id}
-className="border-b"
->
-
-<td className="p-3">
-
-{
-
-item.productName ||
-
-item.name ||
-
-"Unknown"
-
-}
-
-</td>
-
-<td className="p-3">
-
-{
-
-item.category ||
-
-"Bags"
-
-}
-
-</td>
-
-<td
-className="
-p-3
-text-center
-font-bold
-text-red-600
-">
-
-{
-
-item.stock || 0
-
-}
-
-</td>
-
-</tr>
-
-))
-
-}
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
+  </div>
 
 </div>
 {/* ===========================
 RECENT SALES
 =========================== */}
 
-<div
-className="
-mt-8
-bg-white
-rounded-2xl
-shadow-lg
-p-6
-">
+<div className="mt-8 bg-white rounded-2xl shadow-lg p-6">
 
-<div
-className="
-flex
-justify-between
-items-center
-mb-6
-">
+  <div className="flex justify-between items-center mb-6">
 
-<h2
-className="
-text-xl
-font-bold
-">
+    <h2 className="text-xl font-bold">
+      Recent Sales Transactions
+    </h2>
 
-Recent Sales Transactions
+    <select
+      value={filter}
+      onChange={(e) => setFilter(e.target.value)}
+      className="border rounded-lg px-4 py-2"
+    >
+      <option value="month">This Month</option>
+      <option value="week">This Week</option>
+      <option value="all">All Time</option>
+    </select>
 
-</h2>
+  </div>
 
-<select
+  <div className="overflow-x-auto">
 
-value={filter}
+    <table className="w-full">
 
-onChange={(e)=>setFilter(e.target.value)}
+      <thead>
 
-className="
-border
-rounded-lg
-px-4
-py-2
-"
+        <tr className="border-b text-gray-600">
 
->
+          <th className="p-3 text-left">Customer</th>
+          <th className="p-3 text-left">Phone</th>
+          <th className="p-3 text-left">Address</th>
+          <th className="p-3 text-left">Bag</th>
+          <th className="p-3 text-center">Qty</th>
+          <th className="p-3 text-right">Amount</th>
+          <th className="p-3 text-center">Payment</th>
+          <th className="p-3 text-center">Date</th>
 
-<option value="month">
+        </tr>
 
-This Month
+      </thead>
 
-</option>
+      <tbody>
 
-<option value="week">
+        {sales.slice(0, 10).map((sale) => (
 
-This Week
+          <tr key={sale.id} className="border-b">
 
-</option>
+            <td className="p-3">
+              {sale.customerName || "Walk In Customer"}
+            </td>
 
-<option value="all">
+            <td className="p-3">
+              {sale.phone || "-"}
+            </td>
 
-All Time
+            <td className="p-3">
+              {sale.address || "-"}
+            </td>
 
-</option>
+            <td className="p-3 font-semibold">
+              {sale.productName || sale.product || "-"}
+            </td>
 
-</select>
+            <td className="p-3 text-center">
+              {sale.quantity || 1}
+            </td>
+
+            <td className="p-3 text-right font-bold text-green-600">
+              {formatMoney(sale.amount || sale.total || 0)}
+            </td>
+
+            <td className="p-3 text-center">
+              <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
+                {sale.paymentMethod || "Cash"}
+              </span>
+            </td>
+
+            <td className="p-3 text-center">
+              {sale.createdAt?.seconds
+                ? new Date(sale.createdAt.seconds * 1000).toLocaleDateString()
+                : "-"}
+            </td>
+
+          </tr>
+
+        ))}
+
+      </tbody>
+
+    </table>
+
+  </div>
 
 </div>
 
-<div
-className="
-overflow-x-auto
-">
-
-<table
-className="
-w-full
-">
-
-<thead>
-
-<tr
-className="
-border-b
-text-gray-600
-">
-
-<th className="p-3 text-left">
-
-Customer
-
-</th>
-
-<th className="p-3 text-left">
-
-Phone
-
-</th>
-
-<th className="p-3 text-left">
-
-Address
-
-</th>
-
-<th className="p-3 text-left">
-
-Bag
-
-</th>
-
-<th className="p-3 text-center">
-
-Qty
-
-</th>
-
-<th className="p-3 text-right">
-
-Amount
-
-</th>
-
-<th className="p-3 text-center">
-
-Payment
-
-</th>
-
-<th className="p-3 text-center">
-
-Date
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-{
-
-sales
-
-.slice(0,10)
-
-.map((sale)=>(
-
-<tr
-
-key={sale.id}
-
-className="border-b"
-
->
-
-<td className="p-3">
-
-{
-
-sale.customerName ||
-
-"Walk In Customer"
-
-}
-
-</td>
-
-<td className="p-3">
-
-{
-
-sale.phone ||
-
-"-"
-
-}
-
-</td>
-
-<td className="p-3">
-
-{
-
-sale.address ||
-
-"-"
-
-}
-
-</td>
-
-<td className="p-3 font-semibold">
-
-{
-
-sale.productName ||
-
-sale.product ||
-
-"-"
-
-}
-
-</td>
-
-<td className="p-3 text-center">
-
-{
-
-sale.quantity ||
-
-1
-
-}
-
-</td>
-
-<td
-className="
-p-3
-text-right
-font-bold
-text-green-600
-">
-
-{
-
-formatMoney(
-
-sale.amount ||
-
-sale.total ||
-
-0
-
-)
-
-}
-
-</td>
-
-<td className="p-3 text-center">
-
-<span
-className="
-bg-blue-100
-text-blue-700
-px-3
-py-1
-rounded-full
-text-sm
-">
-
-{
-
-sale.paymentMethod ||
-
-"Cash"
-
-}
-
-</span>
-
-</td>
-
-<td className="p-3 text-center">
-
-{
-
-sale.createdAt?.seconds
-
-?
-
-new Date(
-
-sale.createdAt.seconds*1000
-
-).toLocaleDateString()
-
-:
-
-"-"
-
-}
-
-</td>
-
-</tr>
-
-))
-
-}
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
 {/* ===========================
 CUSTOMER ANALYTICS
 =========================== */}
 
-<div
-className="
-grid
-grid-cols-1
-md:grid-cols-3
-gap-6
-mt-8
-">
+<div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
 
-<div className="bg-white rounded-2xl shadow-lg p-6">
+  <div className="bg-white rounded-2xl shadow-lg p-6">
+    <p className="text-gray-500">Total Customers</p>
+    <h2 className="text-3xl font-bold mt-3 text-indigo-600">
+      {new Set(sales.map(item => item.customerName)).size}
+    </h2>
+  </div>
 
-<p className="text-gray-500">
+  <div className="bg-white rounded-2xl shadow-lg p-6">
+    <p className="text-gray-500">Online Sales</p>
+    <h2 className="text-3xl font-bold mt-3 text-green-600">
+      {formatMoney(
+        sales
+          .filter(item => item.paymentMethod === "Online")
+          .reduce((sum, item) => sum + Number(item.amount || item.total || 0), 0)
+      )}
+    </h2>
+  </div>
 
-Total Customers
-
-</p>
-
-<h2 className="text-3xl font-bold mt-3 text-indigo-600">
-
-{
-
-new Set(
-
-sales.map(item=>item.customerName)
-
-).size
-
-}
-
-</h2>
-
-</div>
-
-<div className="bg-white rounded-2xl shadow-lg p-6">
-
-<p className="text-gray-500">
-
-Online Sales
-
-</p>
-
-<h2 className="text-3xl font-bold mt-3 text-green-600">
-
-{
-
-formatMoney(
-
-sales
-
-.filter(item=>item.paymentMethod==="Online")
-
-.reduce(
-
-(sum,item)=>
-
-sum+Number(item.amount||item.total||0),
-
-0
-
-)
-
-)
-
-}
-
-</h2>
-
-</div>
-
-<div className="bg-white rounded-2xl shadow-lg p-6">
-
-<p className="text-gray-500">
-
-Cash Sales
-
-</p>
-
-<h2 className="text-3xl font-bold mt-3 text-blue-600">
-
-{
-
-formatMoney(
-
-sales
-
-.filter(item=>item.paymentMethod==="Cash")
-
-.reduce(
-
-(sum,item)=>
-
-sum+Number(item.amount||item.total||0),
-
-0
-
-)
-
-)
-
-}
-
-</h2>
-
-</div>
+  <div className="bg-white rounded-2xl shadow-lg p-6">
+    <p className="text-gray-500">Cash Sales</p>
+    <h2 className="text-3xl font-bold mt-3 text-blue-600">
+      {formatMoney(
+        sales
+          .filter(item => item.paymentMethod === "Cash")
+          .reduce((sum, item) => sum + Number(item.amount || item.total || 0), 0)
+      )}
+    </h2>
+  </div>
 
 </div>
 
 {/* ===========================
-EXPORT
+EXPORT CSV
 =========================== */}
 
-<div
-className="
-mt-8
-bg-white
-rounded-2xl
-shadow-lg
-p-6
-flex
-justify-between
-items-center
-">
+<div className="mt-8 bg-white rounded-2xl shadow-lg p-6 flex justify-between items-center">
 
-<div>
-
-<h2 className="text-xl font-bold">
-
-Export Business Report
-
-</h2>
-
-<p className="text-gray-500 mt-2">
-
-Download Sales Report
-
-</p>
-
+  <div>
+  <h2 className="text-xl font-bold">Export Business Report</h2>
+  <p className="text-gray-500 mt-2">
+    Download Sales Report
+  </p>
 </div>
 
 <button
+  className="bg-black text-white px-6 py-3 rounded-xl"
+  onClick={() => {
 
-className="
-bg-black
-text-white
-px-6
-py-3
-rounded-xl
-"
+  const report = sales.map((sale) => [
 
-onClick={()=>{
+    sale.customerName || "Walk In Customer",
 
-const csv = [
+    sale.phone || "-",
 
-[
-"Customer",
-"Phone",
-"Address",
-"Bag",
-"Quantity",
-"Amount",
-"Payment",
-"Date"
-],
+    sale.address || "-",
 
-...sales.map(item => [
+    sale.productName || sale.product || "-",
 
-item.customerName || "",
+    sale.quantity || 1,
 
-item.phone || "",
+    sale.amount || sale.total || 0,
 
-item.address || "",
+    sale.paymentMethod || "Cash",
 
-item.productName || item.product || "",
+    sale.createdAt?.seconds
+      ? new Date(
+          sale.createdAt.seconds * 1000
+        ).toLocaleDateString()
+      : "-"
 
-item.quantity || 1,
+  ]);
 
-item.amount || item.total || 0,
 
-item.paymentMethod || "Cash",
+  const csvData = [
+    [
+      "Customer",
+      "Phone",
+      "Address",
+      "Bag",
+      "Qty",
+      "Amount",
+      "Payment",
+      "Date"
+    ],
+    ...report
+  ];
 
-item.createdAt?.seconds
-? new Date(item.createdAt.seconds * 1000).toLocaleDateString()
-: ""
 
-])
+  const csvContent = csvData
+    .map(row => row.join(","))
+    .join("\n");
 
-]
 
-.map(row => row.join(","))
+  const blob = new Blob(
+    [csvContent],
+    {
+      type: "text/csv"
+    }
+  );
 
-.join("\n");
 
-const blob=new Blob([csv],{
+  const url = URL.createObjectURL(blob);
 
-type:"text/csv"
 
-});
+  const link = document.createElement("a");
 
-const url=URL.createObjectURL(blob);
+  link.href = url;
 
-const a=document.createElement("a");
+  link.download =
+    "WS-Royal-Bags-Sales-Report.csv";
 
-a.href=url;
 
-a.download="WS_Royal_Bags_Report.csv";
+  link.click();
 
-a.click();
+
+  URL.revokeObjectURL(url);
 
 }}
-
 >
-
-Export CSV
-
+  Export CSV
 </button>
-
 </div>
+
 
 {/* ===========================
-AI INSIGHT
+AI BUSINESS INSIGHT
 =========================== */}
 
-<div
-className="
-mt-8
-bg-gradient-to-r
-from-gray-900
-to-gray-700
-text-white
-rounded-2xl
-p-8
-">
+<div className="mt-8 bg-gradient-to-r from-gray-900 to-gray-700 text-white rounded-2xl p-8">
 
-<h2 className="text-2xl font-bold">
+  <h2 className="text-2xl font-bold">
+    WS Royal Bags AI Business Insight
+  </h2>
 
-WS Royal Bags AI Business Insight
+  <div className="grid grid-cols-3 gap-6 mt-6">
 
-</h2>
+    <div>
+      <p className="text-gray-300">Revenue</p>
+      <h3 className="text-2xl font-bold mt-2">
+        {formatMoney(stats.totalSales)}
+      </h3>
+    </div>
 
-<div
-className="
-grid
-grid-cols-3
-gap-6
-mt-6
-">
+    <div>
+      <p className="text-gray-300">Stock</p>
+      <h3 className="text-2xl font-bold mt-2">
+        {stats.totalStock}
+      </h3>
+    </div>
 
-<div>
+    <div>
+      <p className="text-gray-300">Orders</p>
+      <h3 className="text-2xl font-bold mt-2">
+        {stats.totalOrders}
+      </h3>
+    </div>
 
-<p className="text-gray-300">
-
-Revenue
-
-</p>
-
-<h3 className="text-2xl font-bold mt-2">
-
-{formatMoney(stats.totalSales)}
-
-</h3>
+  </div>
 
 </div>
 
-<div>
-
-<p className="text-gray-300">
-
-Stock
-
-</p>
-
-<h3 className="text-2xl font-bold mt-2">
-
-{stats.totalStock}
-
-</h3>
-
-</div>
-
-<div>
-
-<p className="text-gray-300">
-
-Orders
-
-</p>
-
-<h3 className="text-2xl font-bold mt-2">
-
-{stats.totalOrders}
-
-</h3>
-
+<div className="text-center text-gray-500 mt-10 pb-5">
+  © {new Date().getFullYear()} WS Royal Bags
 </div>
 
 </div>
-
-</div>
-
-<div
-className="
-text-center
-text-gray-500
-mt-10
-pb-5
-">
-
-© {new Date().getFullYear()} WS Royal Bags
-
-</div>
-
-</div>
-
-</main>
 
 );
-
 }

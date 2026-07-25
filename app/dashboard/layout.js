@@ -1,106 +1,228 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { FaHome, FaMoneyBillWave } from "react-icons/fa";
 
 export default function DashboardLayout({ children }) {
+
   const pathname = usePathname();
-  const [today, setToday] = useState("");
+  const router = useRouter();
+
+  const [checking, setChecking] = useState(true);
+
 
   useEffect(() => {
-    setToday(
-      new Date().toLocaleDateString("en-GB", {
-        day: "2-digit",
-        month: "short",
-        year: "numeric",
-      })
+
+    const login =
+      localStorage.getItem("adminLogin");
+
+
+    if(login !== "true"){
+
+      router.push("/login");
+
+    }else{
+
+      setChecking(false);
+
+    }
+
+  }, [router]);
+
+
+
+  function logout(){
+
+    localStorage.removeItem(
+      "adminLogin"
     );
-  }, []);
 
-  const menus = [
-    {
-      name: "Dashboard",
-      href: "/dashboard",
-      icon: <FaHome />,
-    },
-    {
-      name: "Sales",
-      href: "/dashboard/sales",
-      icon: <FaMoneyBillWave />,
-    },
-  ];
+    router.push("/login");
 
-  return (
-    <div className="flex min-h-screen bg-slate-100">
+  }
 
-      {/* Sidebar */}
-      <aside className="w-64 bg-slate-900 text-white">
 
-        <div className="p-6 border-b border-slate-700">
-          <h1 className="text-2xl font-bold">
-            WS Royal Bags
-          </h1>
-          <p className="text-sm text-slate-400 mt-2">
-            Admin Panel
-          </p>
-        </div>
 
-        <nav className="p-4 space-y-2">
-          {menus.map((menu) => (
-            <Link
-              key={menu.name}
-              href={menu.href}
-              className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
-                pathname === menu.href
-                  ? "bg-blue-600 text-white"
-                  : "hover:bg-slate-800"
-              }`}
-            >
-              {menu.icon}
-              <span>{menu.name}</span>
-            </Link>
-          ))}
-        </nav>
+  if(checking){
 
-      </aside>
+    return (
 
-      {/* Right Side */}
-      <div className="flex-1">
+      <div className="
+      min-h-screen
+      flex
+      items-center
+      justify-center
+      bg-gray-100
+      ">
 
-        {/* Header */}
-        <header className="bg-white shadow px-8 py-5 flex justify-between items-center">
-
-          <div>
-            <h2 className="text-3xl font-bold text-slate-800">
-              Admin Dashboard
-            </h2>
-
-            <p className="text-gray-500">
-              Welcome to WS Royal Bags
-            </p>
-          </div>
-
-          <div className="text-right">
-            <p className="text-sm text-gray-500">
-              Today's Date
-            </p>
-
-            <p className="font-bold">
-              {today}
-            </p>
-          </div>
-
-        </header>
-
-        {/* Page */}
-        <div className="p-8">
-          {children}
-        </div>
+        <h2 className="
+        text-2xl
+        font-bold
+        ">
+          🔒 Checking Login...
+        </h2>
 
       </div>
 
+    );
+
+  }
+
+
+
+  const menus = [
+
+    {
+      name: "Dashboard",
+      href: "/dashboard",
+      icon: "📊",
+    },
+
+    {
+      name: "Sales",
+      href: "/sales",
+      icon: "💰",
+    },
+
+    {
+      name: "Products",
+      href: "/dashboard/products",
+      icon: "👜",
+    },
+
+    {
+      name: "Purchase",
+      href: "/dashboard/purchase",
+      icon: "📦",
+    },
+
+  ];
+
+
+
+  return (
+
+    <div className="flex min-h-screen bg-gray-100">
+
+
+      <aside className="
+      w-64
+      bg-white
+      shadow-lg
+      border-r
+      flex
+      flex-col
+      ">
+
+
+        <div className="p-6 border-b">
+
+          <h1 className="
+          text-3xl
+          font-bold
+          text-blue-600
+          ">
+            WS Royal Bags
+          </h1>
+
+
+          <p className="text-gray-500 mt-2">
+            🔒 Admin Panel
+          </p>
+
+        </div>
+
+
+
+        <nav className="flex-1 p-4">
+
+
+          {menus.map((menu)=>(
+
+
+            <Link
+
+              key={menu.name}
+
+              href={menu.href}
+
+              className={`flex items-center gap-3 px-4 py-3 rounded-xl mb-2 font-semibold ${
+              
+              pathname === menu.href
+
+              ? "bg-blue-600 text-white"
+
+              : "text-gray-700 hover:bg-gray-100"
+
+              }`}
+
+            >
+
+              <span className="text-xl">
+                {menu.icon}
+              </span>
+
+              <span>
+                {menu.name}
+              </span>
+
+
+            </Link>
+
+
+          ))}
+
+
+        </nav>
+
+
+
+        <div className="p-4 border-t">
+
+
+          <button
+
+          onClick={logout}
+
+          className="
+          w-full
+          bg-red-600
+          hover:bg-red-700
+          text-white
+          py-3
+          rounded-xl
+          font-semibold
+          "
+
+          >
+
+            🚪 Logout
+
+          </button>
+
+
+        </div>
+
+
+
+      </aside>
+
+
+
+      <main className="
+      flex-1
+      p-8
+      overflow-auto
+      ">
+
+        {children}
+
+      </main>
+
+
     </div>
+
   );
+
 }
