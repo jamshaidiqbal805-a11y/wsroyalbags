@@ -4,43 +4,53 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
+
 export default function DashboardLayout({ children }) {
 
+
   const pathname = usePathname();
+
   const router = useRouter();
 
-  const [checking, setChecking] = useState(true);
+
+  const [checking,setChecking] = useState(true);
 
 
-  useEffect(() => {
+
+  useEffect(()=>{
+
 
     const login =
-      localStorage.getItem("adminLogin");
+    localStorage.getItem("adminLogin");
 
 
     if(login !== "true"){
 
       router.push("/login");
 
-    }else{
+    }
+    else{
 
       setChecking(false);
 
     }
 
-  }, [router]);
+
+  },[router]);
+
+
 
 
 
   function logout(){
 
-    localStorage.removeItem(
-      "adminLogin"
-    );
+    localStorage.removeItem("adminLogin");
 
     router.push("/login");
 
   }
+
+
 
 
 
@@ -53,15 +63,19 @@ export default function DashboardLayout({ children }) {
       flex
       items-center
       justify-center
-      bg-gray-100
+      bg-gray-950
+      text-white
       ">
 
         <h2 className="
-        text-2xl
+        text-xl
         font-bold
         ">
-          🔒 Checking Login...
+
+          🔒 Checking Admin Login...
+
         </h2>
+
 
       </div>
 
@@ -71,158 +85,274 @@ export default function DashboardLayout({ children }) {
 
 
 
+
+
   const menus = [
 
-    {
-      name: "Dashboard",
-      href: "/dashboard",
-      icon: "📊",
-    },
 
     {
-      name: "Sales",
-      href: "/sales",
-      icon: "💰",
+      name:"Dashboard",
+      href:"/dashboard",
+      icon:"📊"
     },
 
-    {
-      name: "Products",
-      href: "/dashboard/products",
-      icon: "👜",
-    },
 
     {
-      name: "Purchase",
-      href: "/dashboard/purchase",
-      icon: "📦",
+      name:"Sales",
+      href:"/sales",
+      icon:"💰"
     },
+
+
+    {
+      name:"Products Management",
+      href:"/dashboard/products",
+      icon:"👜"
+    },
+
+
+    {
+      name:"Purchase Management",
+      href:"/dashboard/purchase",
+      icon:"📦"
+    },
+
 
   ];
 
 
 
-  return (
-
-    <div className="flex min-h-screen bg-gray-100">
 
 
-      <aside className="
-      w-64
-      bg-white
-      shadow-lg
-      border-r
-      flex
-      flex-col
-      ">
+return (
 
 
-        <div className="p-6 border-b">
-
-          <h1 className="
-          text-3xl
-          font-bold
-          text-blue-600
-          ">
-            WS Royal Bags
-          </h1>
-
-
-          <p className="text-gray-500 mt-2">
-            🔒 Admin Panel
-          </p>
-
-        </div>
+<div className="
+flex
+min-h-screen
+bg-[#f8fafc]
+">
 
 
 
-        <nav className="flex-1 p-4">
 
 
-          {menus.map((menu)=>(
+{/* SIDEBAR */}
 
 
-            <Link
-
-              key={menu.name}
-
-              href={menu.href}
-
-              className={`flex items-center gap-3 px-4 py-3 rounded-xl mb-2 font-semibold ${
-              
-              pathname === menu.href
-
-              ? "bg-blue-600 text-white"
-
-              : "text-gray-700 hover:bg-gray-100"
-
-              }`}
-
-            >
-
-              <span className="text-xl">
-                {menu.icon}
-              </span>
-
-              <span>
-                {menu.name}
-              </span>
-
-
-            </Link>
-
-
-          ))}
-
-
-        </nav>
+<aside className="
+w-64
+bg-gradient-to-b
+from-[#1e3a8a]
+to-[#0f172a]
+text-white
+shadow-2xl
+flex
+flex-col
+">
 
 
 
-        <div className="p-4 border-t">
 
 
-          <button
-
-          onClick={logout}
-
-          className="
-          w-full
-          bg-red-600
-          hover:bg-red-700
-          text-white
-          py-3
-          rounded-xl
-          font-semibold
-          "
-
-          >
-
-            🚪 Logout
-
-          </button>
+<div className="
+p-6
+border-b
+border-gray-700
+">
 
 
-        </div>
+<h1 className="
+text-xl
+font-extrabold
+tracking-wide
+text-yellow-400
+">
+
+WS Royal
+
+</h1>
+
+
+<p className="
+text-gray-300
+mt-2
+text-sm
+">
+
+✨ Luxury Admin Panel
+
+</p>
+
+
+</div>
 
 
 
-      </aside>
 
 
 
-      <main className="
-      flex-1
-      p-8
-      overflow-auto
-      ">
 
-        {children}
-
-      </main>
+<nav className="
+flex-1
+p-6
+">
 
 
-    </div>
+{
 
-  );
+menus.map((menu)=>(
+
+
+<Link
+
+key={menu.name}
+
+href={menu.href}
+
+className={`
+
+flex
+items-center
+gap-3
+px-4
+py-3
+rounded-xl
+mb-2
+transition-all
+duration-300
+
+${
+
+pathname === menu.href
+
+?
+
+"bg-yellow-400 text-black shadow-lg scale-[1.02]"
+
+:
+
+"text-gray-200 hover:bg-white/10 hover:text-yellow-300"
+
+}
+
+`}
+
+>
+
+
+
+<span className="
+text-xl
+">
+
+{menu.icon}
+
+</span>
+
+
+
+<span className="
+text-base
+font-semibold
+">
+
+{menu.name}
+
+</span>
+
+
+
+</Link>
+
+
+))
+
+
+}
+
+
+
+</nav>
+
+
+
+
+
+
+
+
+<div className="
+p-6
+border-t
+border-gray-700
+">
+
+
+
+<button
+
+onClick={logout}
+
+className="
+w-full
+bg-red-600
+hover:bg-red-700
+text-white
+py-3
+rounded-xl
+font-bold
+text-base
+transition
+"
+
+>
+🚪 Logout
+
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+</aside>
+
+
+
+
+
+
+
+
+{/* MAIN CONTENT */}
+
+
+
+<main className="
+flex-1
+p-6
+overflow-auto
+">
+
+
+{children}
+
+
+</main>
+
+
+
+
+
+</div>
+
+
+);
+
 
 }
