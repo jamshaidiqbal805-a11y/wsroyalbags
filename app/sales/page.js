@@ -34,6 +34,7 @@ export default function SalesPage() {
 
   const [products, setProducts] = useState([]);
   const [sales, setSales] = useState([]);
+  const [orders, setOrders] = useState([]);
 
   const [customerName, setCustomerName] = useState("");
   const [phone, setPhone] = useState("");
@@ -216,8 +217,9 @@ export default function SalesPage() {
     selectedProduct.productCode || "",
 
    productImage:
-    selectedProduct.image || "",
-
+selectedProduct.imageUrl ||
+selectedProduct.image ||
+"",
    productPrice:
     Number(
       selectedProduct.salePrice ||
@@ -240,6 +242,18 @@ export default function SalesPage() {
    createdAt: serverTimestamp(),
  }
 );
+// ==========================
+// UPDATE PRODUCT STOCK
+// ==========================
+
+await updateDoc(
+  doc(db,"products", selectedProduct.id),
+  {
+    stock:
+      Number(selectedProduct.stock || 0) - Number(quantity)
+  }
+);
+
     setCustomerName("");
     setPhone("");
     setAddress("");

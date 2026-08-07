@@ -100,23 +100,26 @@ export default function TrackOrder(){
   return (
 
     <main className="
-    min-h-screen
-    bg-gradient-to-br
-    from-[#faf8f5]
-    to-yellow-50
-    p-6
-    ">
+min-h-screen
+bg-gradient-to-br
+from-[#f8f5ee]
+via-white
+to-[#fff3c4]
+p-6
+flex
+items-center
+justify-center
+">
 
 
       <div className="
-      max-w-xl
-      mx-auto
-      bg-white
-      rounded-3xl
-      shadow-2xl
-      p-8
-      mt-10
-      ">
+max-w-xl
+w-full
+bg-white
+rounded-3xl
+shadow-2xl
+p-8
+">
 
 
 

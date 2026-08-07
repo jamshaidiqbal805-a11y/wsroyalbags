@@ -43,18 +43,18 @@ export default function FeaturedProducts() {
           {products.map((item) => (
 
             <div
-              key={item.id}
-              className="group overflow-hidden rounded-3xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+              key={item.code}
+              className="group overflow-hidden rounded-3xl bg-white/80 backdrop-blur-xl border border-amber-100 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
             >
 
 
               {/* Image Area */}
-              <div className="relative flex h-[420px] items-center justify-center bg-[#faf8f5] p-5">
+              <div className="relative flex h-[380px] items-center justify-center bg-[#faf8f5] p-5">
 
 
-                <span className="absolute top-4 left-4 z-10 rounded-full bg-black px-3 py-1 text-xs font-semibold text-amber-400">
-                  Bestseller
-                </span>
+                <span className="absolute top-4 left-4 z-10 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#8B6508] px-4 py-2 text-xs font-bold text-white shadow-lg">
+  ✨ Premium
+</span>
 
 
                 <Image
@@ -75,7 +75,7 @@ export default function FeaturedProducts() {
               <div className="p-6 text-center">
 
 
-                <h3 className="text-xl font-bold text-gray-900">
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">
                   {item.name}
                 </h3>
 
@@ -94,9 +94,9 @@ export default function FeaturedProducts() {
                   href="https://wa.me/923157405911"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-6 inline-flex w-full justify-center rounded-full bg-green-500 py-3 font-semibold text-white transition hover:bg-green-600"
+                  className="mt-6 inline-flex w-full justify-center rounded-full bg-gradient-to-r from-[#D4AF37] to-[#8B6508]py-3 font-semibold text-white transition hover:bg-green-600"
                 >
-                  Order on WhatsApp
+                  ✨ Order Now
                 </a>
 
 

@@ -10,6 +10,8 @@ import {
   query,
   where,
   getDocs,
+  doc,
+  updateDoc
 } from "firebase/firestore";
 
 import { db } from "@/lib/firebase";
@@ -33,6 +35,7 @@ const [address,setAddress] = useState("");
 
 const [paymentMethod,setPaymentMethod] =
 useState("Cash on Delivery");
+
 
 const [loading,setLoading] = useState(false);
 
@@ -102,7 +105,10 @@ loadProduct();
 
 
 
+
 async function placeOrder(){
+console.log("Place Order Started");
+
 
 if(!customerName || !phone || !address){
 
@@ -113,7 +119,6 @@ return;
 
 
 setLoading(true);
-
 
 try{
 
@@ -130,7 +135,7 @@ Math.floor(100000 + Math.random()*900000);
 
 
 
-await addDoc(
+const orderRef = await addDoc(
 collection(db,"orders"),
 {
 
@@ -169,6 +174,7 @@ paymentMethod,
 
 paymentStatus:"Pending",
 
+
 trackingNumber,
 
 
@@ -177,6 +183,8 @@ createdAt:serverTimestamp()
 }
 
 );
+console.log("Firebase ID:", orderRef.id);
+console.log("Order Saved");
 
 
 
@@ -189,9 +197,9 @@ router.push(
 }
 catch(error){
 
-console.log(error);
+console.log("ORDER ERROR:", error);
 
-alert("Order failed");
+alert(error.message);
 
 }
 finally{
@@ -209,10 +217,10 @@ setLoading(false);
 
 return (
 
-<main className="min-h-screen bg-[#faf8f5] p-6">
+<main className="min-h-screen bg-[#faf8f5] flex justify-center items-center p-6">
 
 
-<div className="max-w-xl mx-auto bg-white rounded-3xl shadow-xl p-8 mt-10">
+<div className="w-full max-w-xl bg-white rounded-3xl shadow-xl p-8">
 
 
 <h1 className="text-3xl font-black text-center">
@@ -278,10 +286,37 @@ Bank Transfer
 </option>
 
 <option>
-Online Payment
+Easypaisa / JazzCash
 </option>
 
 </select>
+{
+paymentMethod !== "Cash on Delivery" && (
+
+<div className="bg-yellow-50 p-4 rounded-xl">
+
+<h3 className="font-bold">
+Payment Details
+</h3>
+
+<p>
+Easypaisa/JazzCash: 03XX-XXXXXXX
+</p>
+
+<p>
+Account Title: WS Royal Bags
+</p>
+
+<p className="text-sm text-gray-500 mt-2">
+Once your payment is completed, kindly share the payment confirmation screenshot with us on WhatsApp. Our team will verify your payment and confirm your order shortly.
+
+</p>
+
+
+</div>
+
+)
+}
 
 
 
@@ -322,28 +357,48 @@ Amount: Rs {Number(product?.salePrice || product?.price || 0).toLocaleString()}
 
 
 
+<div className="mt-5 bg-gray-50 rounded-xl p-4 text-sm text-gray-600">
+
+  <p className="font-bold text-gray-800 mb-2">
+    WS Royal Bags Order Policy
+  </p>
+
+  <p>
+    • Delivery time: 3-5 working days
+  </p>
+
+  <p>
+    • Exchange available within 7 days (conditions apply)
+  </p>
+
+  <p>
+    • Orders are confirmed after verification
+  </p>
+
+  <p>
+    • Customer information is kept secure
+  </p>
+
+</div>
+
+
 <button
-onClick={placeOrder}
-disabled={loading}
-className="w-full h-14 bg-gradient-to-r from-yellow-500 to-amber-600 text-white rounded-xl font-bold"
+  onClick={placeOrder}
+  disabled={loading}
+  className="w-full h-14 bg-gradient-to-r from-yellow-500 to-amber-600 text-white rounded-xl font-bold mt-5"
 >
 
-{
-loading ? "Processing..." : "Place Order"
-}
+  {
+    loading ? "Processing..." : "Place Order"
+  }
 
 </button>
 
-
-
 </div>
 
 </div>
-
 
 </main>
 
-)
-
-
+);
 }

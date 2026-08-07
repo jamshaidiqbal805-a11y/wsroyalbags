@@ -22,22 +22,25 @@ export default function Hero() {
           </span>
 
 
-          <h1 className="mt-7 text-5xl font-black leading-none tracking-tight text-gray-900 md:text-6xl lg:text-[58px]">
-            Luxury Bags
+          <h1 className="mt-7 text-4xl font-black leading-tight tracking-tight text-gray-900 sm:text-5xl md:text-6xl lg:text-[58px]">
+  Luxury That
+  <span className="mt-3 block bg-gradient-to-r from-[#c28b00] via-[#d4a017] to-[#f4c542] bg-clip-text text-transparent">
+    Defines Your Style
+  </span>
+</h1>
 
-            <span className="mt-3 block bg-gradient-to-r from-[#c28b00] via-[#d4a017] to-[#f4c542] bg-clip-text text-transparent">
-              Crafted For Every Style
-            </span>
-          </h1>
+<p className="mt-4 text-lg font-semibold text-[#c28b00]">
+  Premium Bags. Timeless Elegance.
+</p>
 
 
-          <p className="mt-8 max-w-2xl text-xl leading-9 text-gray-600">
-            Discover elegant luxury bags crafted for modern lifestyles.
-Premium designs, timeless style and exceptional quality for every occasion.
+          <p className="mt-8 max-w-2xl text-base leading-8 text-gray-600 sm:text-lg lg:text-xl">
+
+            Discover premium handbags, office bags and travel bags crafted with exceptional quality, elegant design and timeless luxury. Perfect for every occasion.
           </p>
 
 
-          <div className="mt-10 flex flex-wrap gap-5">
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
 
             <a
               href="#collection"
@@ -57,6 +60,29 @@ Premium designs, timeless style and exceptional quality for every occasion.
             </a>
 
           </div>
+          <div className="mt-8 flex flex-wrap gap-6 text-sm font-medium text-gray-700">
+
+  <div className="flex items-center gap-2">
+    <span>✔</span>
+    <span>Premium Quality</span>
+  </div>
+
+  <div className="flex items-center gap-2">
+    <span>🚚</span>
+    <span>Nationwide Delivery</span>
+  </div>
+
+  <div className="flex items-center gap-2">
+    <span>⭐</span>
+    <span>Trusted Collection</span>
+  </div>
+
+  <div className="flex items-center gap-2">
+    <span>💬</span>
+    <span>WhatsApp Support</span>
+  </div>
+
+</div>
 
         </div>
 
@@ -64,7 +90,8 @@ Premium designs, timeless style and exceptional quality for every occasion.
 
         {/* RIGHT IMAGE */}
 
-        <div className="relative flex items-center justify-center lg:justify-end">
+        <div className="relative flex flex-col items-center justify-center lg:items-end">
+          
 
           <div className="absolute h-[380px] w-[380px] rounded-full bg-gradient-to-br from-yellow-300/20 to-amber-400/10 blur-[120px]" />
 
@@ -73,7 +100,7 @@ Premium designs, timeless style and exceptional quality for every occasion.
           <div className="absolute h-[520px] w-[520px] rounded-full border border-yellow-200/20" />
 
 
-          <Image
+        <Image
   src="/bags/hero.webp.jpeg"
   alt="WS Royal Bags Luxury Collection"
   width={1000}
@@ -82,6 +109,26 @@ Premium designs, timeless style and exceptional quality for every occasion.
   quality={75}
   className="relative z-10 w-[380px] lg:w-[430px] rounded-[36px] border border-white/70 object-cover shadow-[0_40px_90px_rgba(0,0,0,.22)] transition-all duration-700 hover:scale-105"
 />
+
+
+<div className="relative z-10 mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-md">
+
+  <div className="rounded-2xl bg-white/80 backdrop-blur-md p-4 shadow-lg text-center">
+    <h3 className="text-2xl font-bold text-[#c28b00]">50+</h3>
+    <p className="text-sm text-gray-600">Luxury Bags</p>
+  </div>
+
+  <div className="rounded-2xl bg-white/80 backdrop-blur-md p-4 shadow-lg text-center">
+    <h3 className="text-2xl font-bold text-[#c28b00]">100%</h3>
+    <p className="text-sm text-gray-600">Quality</p>
+  </div>
+
+  <div className="rounded-2xl bg-white/80 backdrop-blur-md p-4 shadow-lg text-center">
+    <h3 className="text-2xl font-bold text-[#c28b00]">24/7</h3>
+    <p className="text-sm text-gray-600">Support</p>
+  </div>
+
+</div>
 
       
 

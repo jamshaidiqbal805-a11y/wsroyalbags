@@ -65,9 +65,33 @@ export default function Footer() {
 
       <div className="container mt-12 border-t border-gray-700 pt-6 text-center text-gray-400">
 
-        © 2026 WS Royal Bags. All Rights Reserved.
+  <div className="flex justify-center gap-6 mb-4 text-sm">
 
-      </div>
+ <div className="flex justify-center gap-6 mb-4 text-sm">
+
+  <a
+    href="/privacy-policy"
+    className="hover:text-yellow-500"
+  >
+    Privacy Policy
+  </a>
+
+
+  <a
+    href="/return-policy"
+    className="hover:text-yellow-500"
+  >
+    Return & Exchange Policy
+  </a>
+
+</div>
+
+</div>
+
+
+© 2026 WS Royal Luxury Bags | All Rights Reserved.
+
+</div>
     </footer>
   );
 }

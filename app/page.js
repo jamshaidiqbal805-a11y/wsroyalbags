@@ -23,6 +23,7 @@ const [search,setSearch] = useState("");
 
 const [category,setCategory] = useState("All");
 const [firebaseProducts,setFirebaseProducts] = useState([]);
+const [loading,setLoading] = useState(true);
 useEffect(()=>{
 
 async function loadProducts(){
@@ -50,6 +51,8 @@ data.productCode || "",
 
 name:
 data.productName || "",
+stock:
+data.stock || 0,
 
 category:
 data.category || "",
@@ -85,11 +88,14 @@ discount:
 
 console.log("Firebase Products:", list);
 setFirebaseProducts(list);
+setLoading(false);
 
 
 }catch(error){
 
 console.log("Firebase Error:", error);
+
+setLoading(false);
 
 }
 
@@ -282,6 +288,14 @@ Leather Collection
 
 
 {
+loading ?
+
+<h2 className="loading">
+Loading Luxury Collection...
+</h2>
+
+:
+
 filteredProducts.map((item)=>(
 
 
@@ -361,6 +375,17 @@ className="product-img object-contain hover:scale-105 transition duration-500"
 <p className="product-category">
 
 {item.category}
+
+</p>
+<p className="stock-status">
+
+{
+item.stock > 0
+?
+"✓ Available"
+:
+"✕ Out of Stock"
+}
 
 </p>
 
@@ -443,19 +468,23 @@ View Details
 <a
 href={`https://wa.me/923157405911?text=${encodeURIComponent(
 
-`🛍️ WS Royal Luxury Bags
+`✨ WS Royal Luxury Bags
 
-✨ New Website Order Request
+👜 Premium Product Inquiry
 
-👜 Product: ${item.name}
+Product:
+${item.name}
 
-🔖 Code: ${item.code}
+Code:
+${item.code}
 
-💰 Price: ${item.price}
+Price:
+${item.price}
 
-Please confirm availability.
+Availability:
+Please confirm stock & delivery details.
 
-Thank you.`
+Thank you for choosing WS Royal Luxury Bags.`
 
 )}`}
 
@@ -954,7 +983,7 @@ Lahore, Pakistan
 
 <p>
 
-info@wsroyalbags.com
+wsroyalbags@gmail.com
 
 </p>
 
